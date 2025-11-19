@@ -1,0 +1,1 @@
+This folder should contain user generated code to be executed by the game
