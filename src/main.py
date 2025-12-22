@@ -1,57 +1,82 @@
-#!/usr/bin/env python3
-import tcod
-from input_handlers import EventHandler
-from entity import Entity
-from engine import Engine
-from game_map import GameMap
-from procgen import generate_dungeon
+#!/usr/bin/env python
+"""Main module."""
+
+from __future__ import annotations
+
+import logging
+from datetime import datetime
+from pathlib import Path
+from typing import NoReturn
+
+import imageio
+import tcod.console
+import tcod.context
+import tcod.ecs
+import tcod.event
+import tcod.tileset
+
+import g
+import game.actor_tools
+import game.procgen
+import game.states
+import game.world_init
+from game.world_tools import load_world, save_world
+
+TITLE = "Yet Another Roguelike Tutorial"
+CONSOLE_SIZE = 80, 50
+SAVE_PATH = Path("user/saved.sav")
+
+ASSETS_DIR = Path(__file__, "../assets")
+TILESET = ASSETS_DIR / "Alloy_curses_12x12.png"
+
+logger = logging.getLogger(__name__)
 
 
-def main() -> None:
-    screen_width = 80
-    screen_height = 50
+def main() -> NoReturn:  # noqa: C901
+    """Main entry point."""
+    logging.basicConfig(level="DEBUG")
+    tileset = tcod.tileset.load_tilesheet(TILESET, 16, 16, tcod.tileset.CHARMAP_CP437)
+    g.console = tcod.console.Console(*CONSOLE_SIZE)
 
-    map_width = 80
-    map_height = 45
+    g.state = game.states.MainMenu()
 
-    room_max_size = 10
-    room_min_size = 6
-    max_rooms = 30
+    if SAVE_PATH.exists():
+        try:
+            g.world = load_world(SAVE_PATH)
+        except Exception:
+            logger.exception("Failed to load %s", SAVE_PATH)
 
-    tileset = tcod.tileset.load_tilesheet(
-        "dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
-    )
-    event_handler = EventHandler()
+    try:
+        with tcod.context.new(console=g.console, tileset=tileset, title=TITLE) as g.context:
+            while True:
+                g.console.clear()
+                g.state.on_draw(g.console)
+                g.context.present(g.console)
 
-    player = Entity(int(screen_width / 2), int(screen_height / 2), "@", (255, 255, 255))
-    npc = Entity(int(screen_width / 2 - 5), int(screen_height / 2), "@", (255, 255, 0))
-    
-    entities = {npc, player}
-    game_map = generate_dungeon(
-        max_rooms=max_rooms,
-        room_min_size=room_min_size,
-        room_max_size=room_max_size,
-        map_width=map_width,
-        map_height=map_height,
-        player=player
-    )
+                for event in tcod.event.wait():
+                    event = g.context.convert_event(event)  # noqa: PLW2901
+                    match event:
+                        case tcod.event.Quit():
+                            raise SystemExit
+                        case tcod.event.MouseMotion(position=position):
+                            g.cursor_location = position
+                        case tcod.event.WindowEvent(type="WindowLeave"):
+                            g.cursor_location = None
+                        case tcod.event.KeyDown(sym=tcod.event.KeySym.PRINTSCREEN):
+                            screenshots = Path("screenshots")
+                            screenshots.mkdir(exist_ok=True)
+                            imageio.imsave(
+                                screenshots / f"tt2024.{datetime.now():%Y-%m-%d-%H-%M-%S-%f}.png",  # noqa: DTZ005
+                                tileset.render(g.console),
+                            )
+                    try:
+                        g.state = g.state.on_event(event)
+                    except Exception:
+                        logger.exception("Caught error from on_event")
+    finally:
+        if hasattr(g, "world"):
+            save_world(g.world, SAVE_PATH)
 
-    engine = Engine(entities=entities, event_handler=event_handler, game_map=game_map, player=player)
-
-    with tcod.context.new_terminal(
-        screen_width,
-        screen_height,
-        tileset=tileset,
-        title="Yet Another Roguelike Tutorial",
-        vsync=True,
-    ) as context:
-        root_console = tcod.Console(screen_width, screen_height, order="F")
-        while True:
-            engine.render(console=root_console, context=context)
-
-            events = tcod.event.wait()
-
-            engine.handle_events(events)
 
 if __name__ == "__main__":
     main()
