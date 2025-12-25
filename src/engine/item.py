@@ -6,7 +6,7 @@ from typing import Protocol
 
 from tcod.ecs import Entity  # noqa: TC002
 
-from game.action import ActionResult  # noqa: TC001
+from engine.action import ActionResult  # noqa: TC001
 
 
 class ApplyAction(Protocol):

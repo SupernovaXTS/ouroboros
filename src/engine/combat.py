@@ -6,9 +6,9 @@ import logging
 
 import tcod.ecs  # noqa: TC002
 
-from game.components import AI, HP, XP, Defense, DefenseBonus, Graphic, MaxHP, Name, Power, PowerBonus, RewardXP
-from game.messages import add_message
-from game.tags import Affecting, IsAlive, IsBlocking, IsPlayer
+from engine.components import AI, HP, XP, Defense, DefenseBonus, Graphic, MaxHP, Name, Power, PowerBonus, RewardXP
+from engine.messages import add_message
+from engine.tags import Affecting, IsAlive, IsBlocking, IsPlayer
 
 logger = logging.getLogger(__name__)
 

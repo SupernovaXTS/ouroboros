@@ -7,7 +7,7 @@ from typing import Protocol, TypeAlias
 import attrs
 from tcod.ecs import Entity  # noqa: TC002
 
-from game.state import State  # noqa: TC001
+from engine.state import State  # noqa: TC001
 
 
 @attrs.define

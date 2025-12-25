@@ -5,9 +5,9 @@ from __future__ import annotations
 import attrs
 from tcod.ecs import Entity  # noqa: TC002
 
-from game.combat import heal
-from game.components import Name
-from game.messages import add_message
+from engine.combat import heal
+from engine.components import Name
+from engine.messages import add_message
 
 
 @attrs.define

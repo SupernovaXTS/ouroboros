@@ -10,8 +10,8 @@ import tcod.ecs
 import tcod.ecs.callbacks
 from numpy.typing import NDArray
 
-from game.action import Action
-from game.tags import IsIn
+from engine.action import Action
+from engine.tags import IsIn
 
 
 @attrs.define(frozen=True)

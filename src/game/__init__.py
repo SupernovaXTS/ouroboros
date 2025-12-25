@@ -1,1 +1,1 @@
-"""Main game package."""
+"""Docstring for game."""

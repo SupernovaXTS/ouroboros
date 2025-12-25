@@ -6,12 +6,12 @@ import logging
 
 from tcod.ecs import Entity, IsA
 
-from game.action import ActionResult, Impossible, Success
-from game.components import AssignedKey, Count, EquipSlot, Name, Position
-from game.constants import INVENTORY_KEYS
-from game.entity_tools import get_name
-from game.item import FullInventoryError
-from game.tags import Affecting, EquippedBy, IsActor, IsIn, IsItem
+from engine.action import ActionResult, Impossible, Success
+from engine.components import AssignedKey, Count, EquipSlot, Name, Position
+from engine.constants import INVENTORY_KEYS
+from engine.entity_tools import get_name
+from engine.item import FullInventoryError
+from engine.tags import Affecting, EquippedBy, IsActor, IsIn, IsItem
 
 logger = logging.getLogger(__name__)
 

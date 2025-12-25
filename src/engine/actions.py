@@ -7,19 +7,19 @@ from typing import Final, Literal, Self
 import attrs
 import tcod.ecs  # noqa: TC002
 
-from game.action import ActionResult, Impossible, Success
-from game.actor_tools import update_fov
-from game.combat import apply_damage, melee_damage
-from game.components import EquipSlot, MapShape, Name, Position, Tiles, VisibleTiles
-from game.entity_tools import get_name
-from game.item import ApplyAction
-from game.item_tools import add_to_inventory, equip_item, unequip_item
-from game.map import MapKey
-from game.map_tools import get_map
-from game.messages import add_message
-from game.tags import EquippedBy, IsAlive, IsBlocking, IsIn, IsItem, IsPlayer
-from game.tiles import TILES
-from game.travel import path_to
+from engine.action import ActionResult, Impossible, Success
+from engine.actor_tools import update_fov
+from engine.combat import apply_damage, melee_damage
+from engine.components import EquipSlot, MapShape, Name, Position, Tiles, VisibleTiles
+from engine.entity_tools import get_name
+from engine.item import ApplyAction
+from engine.item_tools import add_to_inventory, equip_item, unequip_item
+from engine.map import MapKey
+from engine.map_tools import get_map
+from engine.messages import add_message
+from engine.tags import EquippedBy, IsAlive, IsBlocking, IsIn, IsItem, IsPlayer
+from engine.tiles import TILES
+from engine.travel import path_to
 
 
 @attrs.define

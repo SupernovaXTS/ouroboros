@@ -15,21 +15,21 @@ from tcod import libtcodpy
 from tcod.ecs import Entity  # noqa: TC002
 from tcod.event import KeySym, Modifier, Scancode
 
+import engine.color
+import engine.world_init
 import g
-import game.color
-import game.world_init
-from game.action import Action  # noqa: TC001
-from game.action_tools import do_player_action
-from game.actions import ApplyItem, Bump, DropItem, PickupItem, TakeStairs
-from game.actor_tools import get_player_actor, level_up, required_xp_for_level
-from game.components import HP, XP, Defense, Level, MaxHP, Position, Power
-from game.constants import DIRECTION_KEYS
-from game.entity_tools import get_desc
-from game.item_tools import get_inventory_keys
-from game.messages import add_message
-from game.rendering import main_render
-from game.state import State
-from game.tags import IsPlayer
+from engine.action import Action  # noqa: TC001
+from engine.action_tools import do_player_action
+from engine.actions import ApplyItem, Bump, DropItem, PickupItem, TakeStairs
+from engine.actor_tools import get_player_actor, level_up, required_xp_for_level
+from engine.components import HP, XP, Defense, Level, MaxHP, Position, Power
+from engine.constants import DIRECTION_KEYS
+from engine.entity_tools import get_desc
+from engine.item_tools import get_inventory_keys
+from engine.messages import add_message
+from engine.rendering import main_render
+from engine.state import State
+from engine.tags import IsPlayer
 
 
 @attrs.define
@@ -185,7 +185,7 @@ class MainMenu:
                 if hasattr(g, "world"):
                     return InGame()
             case tcod.event.KeyDown(sym=KeySym.n):
-                g.world = game.world_init.new_world()
+                g.world = engine.world_init.new_world()
                 return InGame()
 
         return self
@@ -201,14 +201,14 @@ class MainMenu:
             console.width // 2,
             console.height // 2 - 4,
             "TOMBS OF THE ANCIENT KINGS",
-            fg=game.color.menu_title,
+            fg=engine.color.menu_title,
             alignment=tcod.constants.CENTER,
         )
         console.print(
             console.width // 2,
             console.height - 2,
             'By Kyle "HexDecimal" Benesch',
-            fg=game.color.menu_title,
+            fg=engine.color.menu_title,
             alignment=tcod.constants.CENTER,
         )
 
@@ -218,8 +218,8 @@ class MainMenu:
                 console.width // 2,
                 console.height // 2 - 2 + i,
                 text.ljust(menu_width),
-                fg=game.color.menu_text,
-                bg=game.color.black,
+                fg=engine.color.menu_text,
+                bg=engine.color.black,
                 alignment=tcod.constants.CENTER,
                 bg_blend=libtcodpy.BKGND_ALPHA(64),
             )

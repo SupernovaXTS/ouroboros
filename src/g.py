@@ -9,7 +9,7 @@ if TYPE_CHECKING:
     import tcod.context
     import tcod.ecs
 
-    import game.state
+    import engine.state
 
 context: tcod.context.Context
 """The active context."""
@@ -17,7 +17,7 @@ context: tcod.context.Context
 console: tcod.console.Console
 """The active console."""
 
-state: game.state.State
+state: engine.state.State
 """The active state."""
 
 world: tcod.ecs.Registry

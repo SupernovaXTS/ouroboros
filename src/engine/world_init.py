@@ -6,9 +6,9 @@ from random import Random
 
 import tcod.ecs
 
-import game.actor_tools
-import game.procgen
-from game.components import (
+import engine.actor_tools
+import engine.procgen
+from engine.components import (
     HP,
     Defense,
     DefenseBonus,
@@ -22,16 +22,16 @@ from game.components import (
     RewardXP,
     SpawnWeight,
 )
-from game.effect import Effect
-from game.effects import Healing
-from game.item import ApplyAction
-from game.item_tools import equip_item
-from game.items import Potion, RandomTargetScroll, TargetScroll
-from game.map_tools import get_map
-from game.messages import MessageLog, add_message
-from game.spell import EntitySpell, PositionSpell
-from game.spells import Fireball, LightningBolt
-from game.tags import IsActor, IsIn, IsItem, IsPlayer
+from engine.effect import Effect
+from engine.effects import Healing
+from engine.item import ApplyAction
+from engine.item_tools import equip_item
+from engine.items import Potion, RandomTargetScroll, TargetScroll
+from engine.map_tools import get_map
+from engine.messages import MessageLog, add_message
+from engine.spell import EntitySpell, PositionSpell
+from engine.spells import Fireball, LightningBolt
+from engine.tags import IsActor, IsIn, IsItem, IsPlayer
 
 
 def new_world() -> tcod.ecs.Registry:
@@ -43,16 +43,16 @@ def new_world() -> tcod.ecs.Registry:
     init_creatures(world)
     init_items(world)
 
-    map_ = get_map(world, game.procgen.Tombs(1))
+    map_ = get_map(world, engine.procgen.Tombs(1))
 
     (start,) = world.Q.all_of(tags=["UpStairs"], relations=[(IsIn, map_)])
 
-    player = game.actor_tools.spawn_actor(world["player"], start.components[Position])
+    player = engine.actor_tools.spawn_actor(world["player"], start.components[Position])
     player.tags.add(IsPlayer)
     equip_item(player, world["dagger"].instantiate())
     equip_item(player, world["leather_armor"].instantiate())
 
-    game.actor_tools.update_fov(player)
+    engine.actor_tools.update_fov(player)
 
     add_message(world, "Hello and welcome, adventurer, to yet another dungeon!", "welcome_text")
     return world

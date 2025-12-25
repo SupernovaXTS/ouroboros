@@ -15,12 +15,12 @@ import tcod.ecs
 import tcod.event
 import tcod.tileset
 
+import engine.actor_tools
+import engine.procgen
+import engine.states
+import engine.world_init
 import g
-import game.actor_tools
-import game.procgen
-import game.states
-import game.world_init
-from game.world_tools import load_world, save_world
+from engine.world_tools import load_world, save_world
 
 TITLE = "Yet Another Roguelike Tutorial"
 CONSOLE_SIZE = 80, 50
@@ -38,7 +38,7 @@ def main() -> NoReturn:  # noqa: C901
     tileset = tcod.tileset.load_tilesheet(TILESET, 16, 16, tcod.tileset.CHARMAP_CP437)
     g.console = tcod.console.Console(*CONSOLE_SIZE)
 
-    g.state = game.states.MainMenu()
+    g.state = engine.states.MainMenu()
 
     if SAVE_PATH.exists():
         try:

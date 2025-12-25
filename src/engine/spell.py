@@ -8,8 +8,8 @@ import numpy as np  # noqa: TC002
 from numpy.typing import NDArray  # noqa: TC002
 from tcod.ecs import Entity  # noqa: TC002
 
-from game.action import ActionResult  # noqa: TC001
-from game.components import Position  # noqa: TC001
+from engine.action import ActionResult  # noqa: TC001
+from engine.components import Position  # noqa: TC001
 
 
 @runtime_checkable

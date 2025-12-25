@@ -9,12 +9,12 @@ import tcod.map
 from numpy.typing import NDArray  # noqa: TC002
 from tcod.ecs import Entity  # noqa: TC002
 
-from game.action import ActionResult, Success
-from game.combat import apply_damage
-from game.components import HP, MapShape, MemoryTiles, Name, Position, Tiles, VisibleTiles
-from game.messages import add_message
-from game.tags import IsActor, IsIn
-from game.tiles import TILES
+from engine.action import ActionResult, Success
+from engine.combat import apply_damage
+from engine.components import HP, MapShape, MemoryTiles, Name, Position, Tiles, VisibleTiles
+from engine.messages import add_message
+from engine.tags import IsActor, IsIn
+from engine.tiles import TILES
 
 
 @attrs.define

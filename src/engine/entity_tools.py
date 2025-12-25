@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from tcod.ecs import Entity  # noqa: TC002
 
-from game.components import Count, Name
-from game.tags import EquippedBy
+from engine.components import Count, Name
+from engine.tags import EquippedBy
 
 
 def get_name(entity: Entity) -> str:

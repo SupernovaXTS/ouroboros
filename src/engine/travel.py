@@ -5,9 +5,9 @@ from __future__ import annotations
 import tcod.ecs
 import tcod.path
 
-from game.components import Position, Tiles
-from game.tags import IsBlocking, IsIn
-from game.tiles import TILES
+from engine.components import Position, Tiles
+from engine.tags import IsBlocking, IsIn
+from engine.tiles import TILES
 
 
 def path_to(actor: tcod.ecs.Entity, dest: Position) -> list[Position]:

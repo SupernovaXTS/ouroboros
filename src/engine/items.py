@@ -7,16 +7,16 @@ import functools
 import attrs
 from tcod.ecs import Entity  # noqa: TC002
 
-import game.states
-from game.action import ActionResult, Impossible, Poll, Success
-from game.action_tools import do_player_action
-from game.components import Position, VisibleTiles
-from game.effect import Effect
-from game.entity_tools import get_name
-from game.item_tools import consume_item
-from game.messages import add_message
-from game.spell import AreaOfEffect, EntitySpell, PositionSpell
-from game.tags import IsActor, IsIn
+import engine.states
+from engine.action import ActionResult, Impossible, Poll, Success
+from engine.action_tools import do_player_action
+from engine.components import Position, VisibleTiles
+from engine.effect import Effect
+from engine.entity_tools import get_name
+from engine.item_tools import consume_item
+from engine.messages import add_message
+from engine.spell import AreaOfEffect, EntitySpell, PositionSpell
+from engine.tags import IsActor, IsIn
 
 
 @attrs.define
@@ -73,7 +73,7 @@ class TargetScroll:
         if target is None:
             actor.registry["cursor"].components[Position] = actor.components[Position]
             return Poll(
-                game.states.PositionSelect(
+                engine.states.PositionSelect(
                     pick_callback=lambda pos: do_player_action(actor, lambda actor: self.on_apply(actor, item, pos)),
                     highlighter=highlighter,
                 )

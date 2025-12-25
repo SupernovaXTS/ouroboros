@@ -5,8 +5,8 @@ from __future__ import annotations
 import numpy as np
 import tcod.ecs  # noqa: TC002
 
-from game.components import MapShape, MemoryTiles, Tiles, VisibleTiles
-from game.map import MapKey  # noqa: TC001
+from engine.components import MapShape, MemoryTiles, Tiles, VisibleTiles
+from engine.map import MapKey  # noqa: TC001
 
 
 def new_map(world: tcod.ecs.Registry, shape: tuple[int, int]) -> tcod.ecs.Entity:

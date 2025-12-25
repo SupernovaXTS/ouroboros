@@ -14,14 +14,14 @@ import tcod.ecs
 import tcod.los
 from numpy.typing import NDArray  # noqa: TC002
 
-import game.map_tools
-from game.actions import HostileAI
-from game.actor_tools import spawn_actor
-from game.components import AI, Floor, Graphic, Position, SpawnWeight, Tiles
-from game.item_tools import spawn_item
-from game.map import MapKey
-from game.tags import IsActor, IsItem
-from game.tiles import TILE_NAMES
+import engine.map_tools
+from engine.actions import HostileAI
+from engine.actor_tools import spawn_actor
+from engine.components import AI, Floor, Graphic, Position, SpawnWeight, Tiles
+from engine.item_tools import spawn_item
+from engine.map import MapKey
+from engine.tags import IsActor, IsItem
+from engine.tiles import TILE_NAMES
 
 max_items_by_floor = (
     (1, 1),
@@ -178,7 +178,7 @@ def generate_dungeon(  # noqa: C901
     )
     item_weights: Final = get_template_weights(world.Q.all_of(components=[SpawnWeight], tags=[IsItem], depth=0), floor)
     map_height, map_width = shape
-    map_ = game.map_tools.new_map(world, shape)
+    map_ = engine.map_tools.new_map(world, shape)
     map_.components[Floor] = floor
     map_tiles = map_.components[Tiles]
     map_tiles[:] = TILE_NAMES["wall"]

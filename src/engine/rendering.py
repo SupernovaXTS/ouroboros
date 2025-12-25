@@ -11,11 +11,11 @@ import tcod.ecs
 from numpy.typing import NDArray  # noqa: TC002
 
 import g
-from game.actor_tools import get_player_actor, required_xp_for_level
-from game.components import HP, XP, Floor, Graphic, MapShape, MaxHP, MemoryTiles, Name, Position, Tiles, VisibleTiles
-from game.messages import Message, MessageLog
-from game.tags import IsAlive, IsGhost, IsIn, IsItem, IsPlayer
-from game.tiles import TILES
+from engine.actor_tools import get_player_actor, required_xp_for_level
+from engine.components import HP, XP, Floor, Graphic, MapShape, MaxHP, MemoryTiles, Name, Position, Tiles, VisibleTiles
+from engine.messages import Message, MessageLog
+from engine.tags import IsAlive, IsGhost, IsIn, IsItem, IsPlayer
+from engine.tiles import TILES
 
 from . import color
 
