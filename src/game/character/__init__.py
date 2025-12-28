@@ -1,0 +1,1 @@
+"""Package for character-related functionality."""
