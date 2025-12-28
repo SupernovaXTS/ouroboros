@@ -1,7 +1,7 @@
 """Player Ego Module."""
 from __future__ import annotations
 
-from enum import Enum
+from enum import IntEnum
 
 import attrs
 
@@ -11,7 +11,7 @@ class Aptitude:
     """A class to represent a character's aptitude."""
     name: str
     abreviation: str
-    level: int
+    level: IntEnum
 
 @attrs.define
 class AptitudeNames:
@@ -32,7 +32,7 @@ class AptitudeAbreviations:
     SOM: str = "SOM"
     WIL: str = "WIL"
 
-class AptitudeAssessment(Enum):
+class AptitudeAssessment(IntEnum):
     """Enum to represent aptitude assessment levels."""
     INCAPABLE = 0
     CHILD = 5
@@ -53,10 +53,10 @@ class Aptitudes:
     willpower: Aptitude
     def __init__(self) -> None:
         """Initialize all aptitudes to level 5."""
-        self.cognition = Aptitude(AptitudeNames.COGNITION, AptitudeAbreviations.COG, AptitudeAssessment.CHILD.value)
-        self.intuition = Aptitude(AptitudeNames.INTUITION, AptitudeAbreviations.INT, AptitudeAssessment.CHILD.value)
-        self.reflexes = Aptitude(AptitudeNames.REFLEXES, AptitudeAbreviations.REF, AptitudeAssessment.CHILD.value)
-        self.savvy = Aptitude(AptitudeNames.SAVVY, AptitudeAbreviations.SAV, AptitudeAssessment.CHILD.value)
-        self.somatics = Aptitude(AptitudeNames.SOMATICS, AptitudeAbreviations.SOM, AptitudeAssessment.CHILD.value)
-        self.willpower = Aptitude(AptitudeNames.WILLPOWER, AptitudeAbreviations.WIL, AptitudeAssessment.CHILD.value)
+        self.cognition = Aptitude(AptitudeNames.COGNITION, AptitudeAbreviations.COG, AptitudeAssessment.CHILD)
+        self.intuition = Aptitude(AptitudeNames.INTUITION, AptitudeAbreviations.INT, AptitudeAssessment.CHILD)
+        self.reflexes = Aptitude(AptitudeNames.REFLEXES, AptitudeAbreviations.REF, AptitudeAssessment.CHILD)
+        self.savvy = Aptitude(AptitudeNames.SAVVY, AptitudeAbreviations.SAV, AptitudeAssessment.CHILD)
+        self.somatics = Aptitude(AptitudeNames.SOMATICS, AptitudeAbreviations.SOM, AptitudeAssessment.CHILD)
+        self.willpower = Aptitude(AptitudeNames.WILLPOWER, AptitudeAbreviations.WIL, AptitudeAssessment.CHILD)
 
