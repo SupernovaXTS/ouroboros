@@ -17,7 +17,12 @@ kinesics = Skill("Kinesics", Aptitudes.savvy, ["active", "social"], SKILLRANGES.
 melee = Skill("Melee", Aptitudes.somatics, ["active", "combat"], SKILLRANGES.UNTRAINED)
 perceive = Skill("Perceive", Aptitudes.intuition, ["active", "general"], SKILLRANGES.UNTRAINED)
 persuade = Skill("Persuade", Aptitudes.savvy, ["active", "social"], SKILLRANGES.UNTRAINED)
-program = Skill
+program = Skill("Program",Aptitudes.cognition, ["active","technical"], SKILLRANGES.UNTRAINED)
+provoke = Skill("Provoke",Aptitudes.savvy, ["active","social"],SKILLRANGES.UNTRAINED)
+psi = Skill("Psi",Aptitudes.willpower,["active","mental","psi"],SKILLRANGES.UNTRAINED)
+research = Skill("Research",Aptitudes.intuition,["active","technical"],SKILLRANGES.UNTRAINED)
+survival = Skill("Survival",Aptitudes.intuition,["active","mental"],SKILLRANGES.UNTRAINED)
+
 # Base Skill Catchall for less common skills
 base_exotic = Skill("Exotic", Aptitudes.cognition, ["active","field"], SKILLRANGES.UNTRAINED)
 

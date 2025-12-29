@@ -35,7 +35,7 @@ class SKILLRANGES(IntEnum):
     MASTER = 90
     LEGENDARY = 100
 
-@attrs.define
+@attrs.define(eq=False)
 class Skill:
     """A class to represent a character's skill."""
     name: str
