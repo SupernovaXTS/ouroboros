@@ -44,10 +44,18 @@ class Aptitude:
     """A class to represent a character's aptitude."""
     name: str
     abreviation: str
-    level: IntEnum = AptitudeAssessment.CHILD
+    level: AptitudeAssessment = AptitudeAssessment.CHILD
     def spec(self,level:AptitudeAssessment) -> None:
         """Set an aptitude to an level."""
         self.level = level
+    def __str__(self) -> str:
+        """Docstring for __str__.
+
+        :param self: Description
+        :return: Description
+        :rtype: str
+        """
+        return f"{self.name}:{self.level}"
 
 
 @attrs.define(eq=False)
@@ -59,14 +67,6 @@ class Aptitudes:
     savvy: Aptitude = attrs.field(default=Aptitude(AptitudeNames.SAVVY, AptitudeAbreviations.SAV, AptitudeAssessment.CHILD))
     somatics: Aptitude = attrs.field(default=Aptitude(AptitudeNames.SOMATICS, AptitudeAbreviations.SOM, AptitudeAssessment.CHILD))
     willpower: Aptitude = attrs.field(default=Aptitude(AptitudeNames.WILLPOWER, AptitudeAbreviations.WIL, AptitudeAssessment.CHILD))
-    def __init__(self) -> None:
-        """Initialize all aptitudes to level 5."""
-        self.cognition = Aptitude(AptitudeNames.COGNITION, AptitudeAbreviations.COG, AptitudeAssessment.CHILD)
-        self.intuition = Aptitude(AptitudeNames.INTUITION, AptitudeAbreviations.INT, AptitudeAssessment.CHILD)
-        self.reflexes = Aptitude(AptitudeNames.REFLEXES, AptitudeAbreviations.REF, AptitudeAssessment.CHILD)
-        self.savvy = Aptitude(AptitudeNames.SAVVY, AptitudeAbreviations.SAV, AptitudeAssessment.CHILD)
-        self.somatics = Aptitude(AptitudeNames.SOMATICS, AptitudeAbreviations.SOM, AptitudeAssessment.CHILD)
-        self.willpower = Aptitude(AptitudeNames.WILLPOWER, AptitudeAbreviations.WIL, AptitudeAssessment.CHILD)
     def spec(self,cognition: AptitudeAssessment,intuition: AptitudeAssessment,reflexes: AptitudeAssessment,savvy: AptitudeAssessment,somatics:AptitudeAssessment,willpower:AptitudeAssessment) -> None:
         """Set all aptitudes to specified levels.
 

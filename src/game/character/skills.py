@@ -27,6 +27,7 @@ survival = Skill("Survival",Aptitudes.intuition,["active","mental"],SKILLRANGES.
 base_exotic = Skill("Exotic", Aptitudes.cognition, ["active","field"], SKILLRANGES.UNTRAINED)
 
 # Base Know Skills - Split into types due to the existence of fields
+base_know = Skill("Know",Aptitudes.cognition,["Field","Know"],SKILLRANGES.UNTRAINED)
 base_academics = Skill("Academics", Aptitudes.cognition, ["field","know"], SKILLRANGES.UNTRAINED)
 base_arts = Skill("Arts", Aptitudes.intuition, ["field","know"], SKILLRANGES.UNTRAINED)
 base_interests = Skill("Interests", Aptitudes.cognition, ["field","know"], SKILLRANGES.UNTRAINED)
@@ -42,3 +43,5 @@ profession = skillfield(base_profession, fields.profession)
 hardware = skillfield(base_hardware, fields.hardware)
 medicine = skillfield(base_medicine, fields.medicine)
 piloting = skillfield(base_piloting, fields.pilot)
+
+print(piloting.ground)
