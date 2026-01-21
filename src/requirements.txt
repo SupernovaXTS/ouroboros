@@ -1,8 +1,7 @@
 attrs
 imageio
 tcod
-tcod-camera
-tcod-ecs>=5.2.3
 numpy
 pandas
 scipy
+pint
